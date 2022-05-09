@@ -18,7 +18,7 @@
 링크 : 
 <https://www.notion.so/f6529c1151b74a8d9b636f8c0c602b10>
 - local 브랜치  clone
-- 로컬 테스트 환경으로 [데스크탑용 도커/쿠버네티스](https://www.docker.com/products/docker-desktop/)와 [Skaffold](https://skaffold.dev/docs/install/) 가 설치
+- 로컬 테스트 환경으로 [데스크탑용 도커/쿠버네티스](https://www.docker.com/products/docker-desktop/)와 (설정에서 Enable kubernetes 설치) [Skaffold](https://skaffold.dev/docs/install/) 가 설치
 - 맥에서는 `/etc/hosts` 윈도우에서는 `C:\Windows\System32\drivers\etc\hosts` 파일 아래 코드 추가
 
 ```
