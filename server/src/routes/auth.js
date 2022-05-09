@@ -1,7 +1,8 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 import { FormValidationError } from '../errors/form-validation-error.js';
-import UserService from '../services/user.js';
+import { currentUserChecker } from '../middlewares/currentuser-checker.js';
+import AuthService from '../services/auth.js';
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.post(
 
 		next();
 	},
-	UserService().signup
+	AuthService().signup
 );
 
 router.post(
@@ -32,15 +33,17 @@ router.post(
 
 		next();
 	},
-	UserService().signin
+	AuthService().signin
 );
 
 router.post('/api/auth/signout', (req, res) => {
+	req.session = null;
+
 	res.send({});
 });
 
-router.get('/api/auth/currentuser', (req, res) => {
-	res.send({});
+router.get('/api/auth/currentuser', currentUserChecker, (req, res) => {
+	res.send({ currentUser: req.currentUser || null });
 });
 
 export { router as authRouter };
