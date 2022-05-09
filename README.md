@@ -27,6 +27,11 @@
 
 - [로컬 쿠버네티스 환경에 NGINX Ingress Controller 설치](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 
+- 셸에서 아래 명령어를 통해 JWT_SECRET 값을 설정(아무 값을 설정)
+```
+kubectl create secret generic jwt-secret --from-literal JWT_SECRET=설정할문자열
+```
+
 - clone한 프로젝트 루트에서 명령어 `skaffold dev` 실행
 - 크롬 브라우저에서 `https://deepinterview.local.com` 으로 접속 
 - 크롬 브라우저에서 보안 관련 warning`연결이 비공개로 설정되어 있지 않습니다.`이 뜨면 뜬 상태에서 키보드로 `thisisunsafe` 타이핑
