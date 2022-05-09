@@ -1,5 +1,4 @@
 import express from 'express';
-import 'express-async-errors';
 import { body, validationResult } from 'express-validator';
 import { FormValidationError } from '../errors/form-validation-error.js';
 
