@@ -16,3 +16,11 @@ build:
         manual:
           - src: "src/**/*.js"
             dest: .
+    - image: deep-interview-client-local
+      context: client
+      docker:
+        dockerfile: Dockerfile.local
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .

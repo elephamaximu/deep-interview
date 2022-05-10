@@ -10,10 +10,17 @@ spec:
     - host: deepinterview.local.com
       http:
         paths:
-          - path: /api/auth/?(.*)
+          - path: /api/?(.*)
             pathType: Prefix
             backend:
               service:
                 name: server-srv
                 port:
                   number: 5000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000
