@@ -3,7 +3,7 @@ const Home = ({ currentUser }) => {
 		currentUser ? (
 			<h1>환영합니다.</h1>
 		) : (
-			<h1>로그인 하고 서비스를 이용해보세요</h1>
+			<h2>간단한 이력서 올리고 AI 모델과 모의 면접 하세요.</h2>
 		);
 	return (
 		<div>

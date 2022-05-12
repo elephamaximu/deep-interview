@@ -1,16 +1,27 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import buildApi from '@/api';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Nav from '@/components/Nav';
-import 'bootstrap/dist/css/bootstrap.css';
+import { wrapper } from '@/modules/store';
+import withReduxSaga from 'next-redux-saga';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentUserRequest } from '@/modules/auth';
 
 const AppComponent = ({ Component, pageProps, currentUser }) => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(currentUserRequest(currentUser));
+	}, []);
+
 	return (
 		<div>
 			<Header />
-			<Nav currentUser={currentUser} />
+			<Nav />
 			<Component {...pageProps} />
-			<Footer currentUser={currentUser} />
+			<Footer />
 		</div>
 	);
 };
@@ -27,4 +38,4 @@ AppComponent.getInitialProps = async (context) => {
 	return { pageProps, ...data };
 };
 
-export default AppComponent;
+export default wrapper.withRedux(withReduxSaga(AppComponent));
