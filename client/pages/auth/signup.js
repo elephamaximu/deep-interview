@@ -1,7 +1,7 @@
 import AuthForm from '@/components/auth';
-import Router from 'next/router';
-import useRequest from '@/hooks/use-request';
+import { signupRequest } from '@/modules/auth';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const signup = () => {
 	const [user, setUser] = useState({
@@ -9,12 +9,9 @@ const signup = () => {
 		password: '',
 	});
 
-	const [makeRequest, error] = useRequest({
-		url: '/api/auth/signup',
-		method: 'post',
-		body: user,
-		onSuccess: () => Router.push('/'),
-	});
+	const dispatch = useDispatch();
+
+	const { signupError } = useSelector((state) => state.authReducer);
 
 	const onChange = (e) => {
 		e.preventDefault();
@@ -22,10 +19,10 @@ const signup = () => {
 		setUser({ ...user, [name]: value });
 	};
 
-	const onSubmit = async (e) => {
+	const onSubmit = (e) => {
 		e.preventDefault();
 
-		await makeRequest();
+		dispatch(signupRequest(user));
 	};
 
 	const contents = {
@@ -38,7 +35,7 @@ const signup = () => {
 			<AuthForm
 				onChange={onChange}
 				onSubmit={onSubmit}
-				error={error}
+				error={signupError}
 				contents={contents}
 			/>
 		</div>

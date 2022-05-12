@@ -14,4 +14,8 @@ const buildApi = ({ req }) => {
 	}
 };
 
+export const signinApi = (payload) => axios.post('/api/auth/signin', payload);
+export const signupApi = (payload) => axios.post('/api/auth/signup', payload);
+export const signoutApi = () => axios.post('/api/auth/signout');
+
 export default buildApi;

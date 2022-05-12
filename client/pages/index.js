@@ -1,10 +1,13 @@
 import buildApi from '@/api';
 import Home from '@/components/Home';
+import BGImage from '../components/BGImage';
 
 const HomePage = ({ currentUser }) => {
 	return (
 		<div className='container'>
 			<Home currentUser={currentUser} />
+			<br />
+			<BGImage style={{ marginTop: '20px' }} />
 		</div>
 	);
 };
