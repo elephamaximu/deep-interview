@@ -21,7 +21,7 @@ const Footer = () => {
 		return (
 			<p className='d-flex justify-content-center p-3 pb-0 align-items-center'>
 				<span className='me-3'>이제 서비스를 이용해보세요.</span>
-				<Link href='/apple'>
+				<Link href='/dashboard'>
 					<a type='button' className='btn btn-outline-light btn-rounded'>
 						Dashboard
 					</a>

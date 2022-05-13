@@ -12,7 +12,7 @@ const Nav = () => {
 	useEffect(() => {
 		if (isLoggedin) {
 			setLinks([
-				{ label: '대시보드', url: '/apple', btn: 'btn btn-outline-danger' },
+				{ label: '대시보드', url: '/dashboard', btn: 'btn btn-outline-danger' },
 				{ label: '로그아웃', url: '/auth/signout', btn: 'btn btn-primary' },
 			]);
 		} else {

@@ -16,11 +16,16 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
 		dispatch(currentUserRequest(currentUser));
 	}, []);
 
+	const EmptyLayout = ({ children }) => <>{children}</>;
+	const NestedLayout = Component.Layout || EmptyLayout;
+
 	return (
 		<div>
 			<Header />
 			<Nav />
-			<Component {...pageProps} />
+			<NestedLayout>
+				<Component {...pageProps} />
+			</NestedLayout>
 			<Footer />
 		</div>
 	);

@@ -1,7 +1,8 @@
 import AuthForm from '@/components/auth';
 import { signupRequest } from '@/modules/auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Router from 'next/router';
 
 const signup = () => {
 	const [user, setUser] = useState({
@@ -11,7 +12,13 @@ const signup = () => {
 
 	const dispatch = useDispatch();
 
-	const { signupError } = useSelector((state) => state.authReducer);
+	const { isLoggedin, signupError } = useSelector((state) => state.authReducer);
+
+	useEffect(() => {
+		if (isLoggedin) {
+			Router.push('/');
+		}
+	});
 
 	const onChange = (e) => {
 		e.preventDefault();

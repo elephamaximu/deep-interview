@@ -22,7 +22,7 @@ const start = async () => {
 	);
 
 	db.mongoose
-		.connect('mongodb://mongo-srv:27017/deep_interview_db')
+		.connect(db.url, db.options)
 		.then(() => {
 			console.log(' ### 몽고DB 연결 성공 ### ');
 		})
