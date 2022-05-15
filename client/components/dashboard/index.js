@@ -1,9 +1,10 @@
+import SideBar from './SideBar';
 const DashboardLayout = ({ children }) => {
 	return (
-		<>
-			<h1>대시보드 레이아웃</h1>
-			{children}
-		</>
+		<div className='w-full h-screen flex flex-col justify-between'>
+			<SideBar />
+			<div>{children}</div>
+		</div>
 	);
 };
 

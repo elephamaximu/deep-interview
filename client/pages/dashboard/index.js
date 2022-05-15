@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import ReactPlayer from 'react-player';
 import DashboardLayout from '@/components/dashboard';
 import DashboardHome from '@/components/dashboard/DashboardHome';
 
@@ -35,10 +33,3 @@ export default dashboard;
 // <button onClick={onClickMakeVideo}>보기</button>
 // 비디오 찾기
 // <button onClick={onClickFindVideo}>보기</button>
-// <ReactPlayer
-// 	url=''
-// 	width='100%'
-// 	height='700px'
-// 	controls={true}
-// 	pip={true}
-// />

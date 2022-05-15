@@ -36,11 +36,6 @@ spec:
                 secretKeyRef:
                   name: "interview-secret"
                   key: clientHostname
-            - name: STUDIOS_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: "interview-secret"
-                  key: studiosToken
             - name: STUDIOS_BASE_URL
               valueFrom:
                 secretKeyRef:

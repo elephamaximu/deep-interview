@@ -1,14 +1,39 @@
-const Home = ({ currentUser }) => {
-	const userInfo = () =>
-		currentUser ? (
-			<h1>환영합니다.</h1>
-		) : (
-			<h2>간단한 이력서 올리고 AI 모델과 모의 면접 하세요.</h2>
+import Image from 'next/image';
+import heroImage from '../public/laptop-and-talking-on-the-phone.png';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+
+const Home = () => {
+	const { isLoggedin } = useSelector((state) => state.authReducer);
+
+	const callToAction = () => {
+		return (
+			<Link href='/auth/signup'>
+				<button className='py-3 px-5 sm:w-[60%] my-4'>지금 시작하기</button>
+			</Link>
 		);
+	};
+
+	const goToDashboard = () => {
+		return (
+			<Link href='/dashboard'>
+				<button className='py-3 px-5 sm:w-[60%] my-4'>대시보드</button>
+			</Link>
+		);
+	};
+
 	return (
-		<div>
-			<br />
-			{userInfo()}
+		<div className='grid md:grid-cols-2 max-w-[1240px] m-auto'>
+			<div className='flex flex-col justify-center md:items-start w-full px-2 py-30 mt-30'>
+				<p className='text-2xl'>AI Studios의 가상인간을 만나보세요</p>
+				<h1 className='py-3 text-5xl md:text-7xl font-bold'>
+					AI로 시작하는 면접
+				</h1>
+				{isLoggedin ? goToDashboard() : callToAction()}
+			</div>
+			<div>
+				<Image src={heroImage} />
+			</div>
 		</div>
 	);
 };

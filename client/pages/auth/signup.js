@@ -38,7 +38,7 @@ const signup = () => {
 	};
 
 	return (
-		<div className='container mt-5 mb-5"'>
+		<div className='flex items-center justify-center min-h-screen bg-gray-100'>
 			<AuthForm
 				onChange={onChange}
 				onSubmit={onSubmit}

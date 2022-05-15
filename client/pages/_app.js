@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.css';
+import '../styles/globals.css';
 import buildApi from '@/api';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -6,7 +6,7 @@ import Nav from '@/components/Nav';
 import { wrapper } from '@/modules/store';
 import withReduxSaga from 'next-redux-saga';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { currentUserRequest } from '@/modules/auth';
 
 const AppComponent = ({ Component, pageProps, currentUser }) => {
@@ -16,18 +16,18 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
 		dispatch(currentUserRequest(currentUser));
 	}, []);
 
-	const EmptyLayout = ({ children }) => <>{children}</>;
+	const EmptyLayout = ({ children }) => <div>{children}</div>;
 	const NestedLayout = Component.Layout || EmptyLayout;
 
 	return (
-		<div>
+		<>
 			<Header />
 			<Nav />
 			<NestedLayout>
 				<Component {...pageProps} />
 			</NestedLayout>
 			<Footer />
-		</div>
+		</>
 	);
 };
 

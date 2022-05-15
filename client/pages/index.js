@@ -1,13 +1,10 @@
 import buildApi from '@/api';
 import Home from '@/components/Home';
-import BGImage from '../components/BGImage';
 
-const HomePage = ({ currentUser }) => {
+const HomePage = () => {
 	return (
-		<div className='container'>
-			<Home currentUser={currentUser} />
-			<br />
-			<BGImage style={{ marginTop: '20px' }} />
+		<div className='w-full h-screen bg-zinc-200 flex flex-col justify-between'>
+			<Home />
 		</div>
 	);
 };

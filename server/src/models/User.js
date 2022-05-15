@@ -4,6 +4,8 @@ export default function UserModel(mongoose) {
 		{
 			email: { type: String, required: true, trim: true, unique: 1 },
 			password: { type: String, required: true },
+			coupons: { type: Number, default: 0 },
+			applies: { type: Number, default: 0 },
 		},
 		{
 			timestamps: true,
