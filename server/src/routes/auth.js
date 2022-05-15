@@ -3,6 +3,7 @@ import { body, validationResult } from 'express-validator';
 import { FormValidationError } from '../errors/form-validation-error.js';
 import { currentUserChecker } from '../middlewares/currentuser-checker.js';
 import AuthService from '../services/auth.js';
+import axios from 'axios';
 
 const router = express.Router();
 

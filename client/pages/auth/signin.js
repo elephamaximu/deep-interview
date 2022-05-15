@@ -1,7 +1,8 @@
 import AuthForm from '@/components/auth';
 import { signinRequest } from '@/modules/auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Router from 'next/router';
 
 const signin = () => {
 	const [user, setUser] = useState({
@@ -11,7 +12,13 @@ const signin = () => {
 
 	const dispatch = useDispatch();
 
-	const { signinError } = useSelector((state) => state.authReducer);
+	const { isLoggedin, signinError } = useSelector((state) => state.authReducer);
+
+	useEffect(() => {
+		if (isLoggedin) {
+			Router.push('/');
+		}
+	}, [isLoggedin]);
 
 	const onChange = (e) => {
 		e.preventDefault();
@@ -31,7 +38,7 @@ const signin = () => {
 	};
 
 	return (
-		<div className='container mt-5 mb-5"'>
+		<div className='flex items-center justify-center min-h-screen bg-gray-100'>
 			<AuthForm
 				onChange={onChange}
 				onSubmit={onSubmit}

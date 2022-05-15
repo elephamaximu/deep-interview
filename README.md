@@ -23,9 +23,37 @@
 
 - [로컬 쿠버네티스 환경에 NGINX Ingress Controller 설치](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 
+- 슬랙에 프로젝트 업로드 란에 *.yaml 시크릿 파일들을 아래 경로에 붙여넣기
+```
+프로젝트 루트폴더/infra/local/base/
+```
 
-- clone한 프로젝트 루트에서 명령어 `skaffold dev` 실행
+- clone한 프로젝트 루트에서 아래 명령어 실행
+```sh
+kubectl apply -f ./infra/local/base
+
+# 아래 명령어로 mongodb-0, mongodb-1이 생성되었는지 확인
+kubectl get pods -n database
+```
+
+- clone한 프로젝트 루트에서 아래 명령어 실행 
+
+```
+skaffold dev --module local
+``` 
 - 크롬 브라우저에서 `https://deepinterview.local.com` 으로 접속 
 - 크롬 브라우저에서 보안 관련 warning`연결이 비공개로 설정되어 있지 않습니다.`이 뜨면 뜬 상태에서 키보드로 `thisisunsafe` 타이핑
 
-## 서비스 배포 현황
+## 로컬 서비스 환경 깨끗이 정리하기
+
+- 터미널 창에서 control + c로 빠져나오면 관련 리소스 자동 삭제 및 정리
+
+```
+kubectl delete -f ./infra/local/base
+
+```
+
+- 아래 명령어로 local ingress-nginx 삭제 및 정리
+```
+
+```

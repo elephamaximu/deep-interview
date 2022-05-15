@@ -6,6 +6,8 @@ import db from './models/index.js';
 import { RouteNotFoundError } from './errors/route-not-found-error.js';
 import { errorHandler } from './middlewares/error-handler.js';
 import { authRouter } from './routes/auth.js';
+import { couponRouter } from './routes/coupons.js';
+import { interviewRouter } from './routes/interviews.js';
 
 const start = async () => {
 	const app = express();
@@ -22,7 +24,7 @@ const start = async () => {
 	);
 
 	db.mongoose
-		.connect('mongodb://mongo-srv:27017/deep_interview_db')
+		.connect(db.url, db.options)
 		.then(() => {
 			console.log(' ### 몽고DB 연결 성공 ### ');
 		})
@@ -36,6 +38,8 @@ const start = async () => {
 	}
 
 	app.use(authRouter);
+	app.use(couponRouter);
+	app.use(interviewRouter);
 
 	app.get('*', () => {
 		throw new RouteNotFoundError();

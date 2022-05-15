@@ -1,9 +1,11 @@
 apiVersion: skaffold/v2alpha3
 kind: Config
+metadata:
+  name: local
 deploy:
   kubectl:
     manifests:
-      - ./infra/local/*
+      - ./infra/local/app/*
 build:
   local:
     push: false
@@ -24,3 +26,13 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
+
+---
+apiVersion: skaffold/v2alpha3
+kind: Config
+metadata:
+  name: prod
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/prod/*
