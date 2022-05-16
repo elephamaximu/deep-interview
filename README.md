@@ -4,7 +4,7 @@
 
 배포주소 :
 <https://deepinterview.link>
-- 배포 형태는 amazon EKS 를 통한 배포로 프로젝트 발표날 시연을 위해 배포할 
+- 배포 형태는 amazon EKS 를 통한 배포로 프로젝트 발표날 시연을 위해 배포할 예정
 
 
 ## about branch
@@ -54,7 +54,9 @@ kubectl delete -f ./infra/local/base
 
 ```
 
-- 아래 명령어로 local ingress-nginx 삭제 및 정리
+- 맥에서는 `/etc/hosts` 윈도우에서는 `C:\Windows\System32\drivers\etc\hosts` 파일 아래 추가된 코드 삭제
+```
+127.0.0.1 deepinterview.local.com
 ```
 
-```
+- local ingress-nginx 삭제 및 정리
