@@ -36,7 +36,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 ```sh
 kubectl apply -f ./infra/local/base
 
-# 아래 명령어로 mongodb-0, mongodb-1이 생성되었는지 확인
+# 아래 명령어로 mongodb-0이 생성되었는지 확인
 kubectl get pods -n database
 ```
 
