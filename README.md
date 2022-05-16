@@ -51,7 +51,7 @@ skaffold dev --module local
 ## 로컬 서비스 환경 깨끗이 정리하기
 
 - 터미널 창에서 control + c로 빠져나오면 skaffold로 생성한 관련 리소스 자동 삭제 및 정리
-
+- 아래 명령어로 skaffold로 생성하지 않은 리소스 제거
 ```
 kubectl delete -f ./infra/local/base
 
