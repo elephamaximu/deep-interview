@@ -23,7 +23,7 @@
 
 - [로컬 쿠버네티스 환경에 NGINX Ingress Controller 설치](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 
-- 슬랙에 프로젝트 업로드 란에 *.yaml 시크릿 파일들을 아래 경로에 붙여넣기
+- 아래 폴더에 `2-mongodb-secrets.yaml`, `interview-secret.yaml` 시크릿 파일들을 아래 경로에 붙여넣기(시크릿 파일들은 슬랙 본 프로젝트 업로드 란 댓글로 올림)
 ```
 프로젝트 루트폴더/infra/local/base/
 ```
@@ -46,7 +46,7 @@ skaffold dev --module local
 
 ## 로컬 서비스 환경 깨끗이 정리하기
 
-- 터미널 창에서 control + c로 빠져나오면 관련 리소스 자동 삭제 및 정리
+- 터미널 창에서 control + c로 빠져나오면 skaffold로 생성한 관련 리소스 자동 삭제 및 정리
 
 ```
 kubectl delete -f ./infra/local/base
