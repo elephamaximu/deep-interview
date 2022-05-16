@@ -23,6 +23,9 @@
 ```
 
 - [로컬 쿠버네티스 환경에 NGINX Ingress Controller 설치](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+```
 
 - 아래 폴더에 `2-mongodb-secrets.yaml`, `interview-secret.yaml` 시크릿 파일들을 아래 경로에 붙여넣기(시크릿 파일들은 슬랙 본 프로젝트 업로드 란 댓글로 올림)
 ```
@@ -60,3 +63,6 @@ kubectl delete -f ./infra/local/base
 ```
 
 - local ingress-nginx 삭제 및 정리
+```
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+```
