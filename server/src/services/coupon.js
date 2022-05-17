@@ -4,20 +4,7 @@ export default function CouponService() {
 	const User = db.User;
 
 	return {
-		async getCoupon(req, res) {
-			const { id } = req.currentUser;
-
-			const existingUser = await User.findOne({ _id: id });
-
-			if (!existingUser) {
-				throw new Error('존재하지 않는 계정입니다.');
-			}
-
-			res
-				.status(200)
-				.send({ coupons: existingUser.coupons, applies: existingUser.applies });
-		},
-		async addCoupon(req, res) {
+		async addCoupon(req) {
 			const { id } = req.currentUser;
 			const { new_coupons } = req.body;
 
@@ -36,7 +23,7 @@ export default function CouponService() {
 
 			await existingUser.save();
 
-			res.status(200).send(existingUser);
+			return existingUser;
 		},
 	};
 }

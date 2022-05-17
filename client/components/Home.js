@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import heroImage from '../public/laptop-and-talking-on-the-phone.png';
+import heroImage from '../public/laptop-and-talking-on-the-phone-min.png';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
@@ -32,7 +32,7 @@ const Home = () => {
 				{isLoggedin ? goToDashboard() : callToAction()}
 			</div>
 			<div>
-				<Image src={heroImage} />
+				<Image priority={true} src={heroImage} />
 			</div>
 		</div>
 	);

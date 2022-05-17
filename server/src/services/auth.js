@@ -5,7 +5,7 @@ export default function AuthService() {
 	const User = db.User;
 
 	return {
-		async signup(req, res) {
+		async signup(req) {
 			const { email, password } = req.body;
 
 			const existingUser = await User.findOne({ email });
@@ -27,9 +27,9 @@ export default function AuthService() {
 
 			req.session = { jwt: userJwt };
 
-			res.status(201).send(user);
+			return user;
 		},
-		async signin(req, res) {
+		async signin(req) {
 			const { email, password } = req.body;
 
 			const existingUser = await User.findOne({ email });
@@ -54,7 +54,18 @@ export default function AuthService() {
 
 			req.session = { jwt: userJwt };
 
-			res.status(200).send(existingUser);
+			return existingUser;
+		},
+
+		async findUser(req) {
+			const simpleUser = req.currentUser;
+
+			const existingUser = await User.findOne({ email: simpleUser.email });
+
+			if (!existingUser) {
+				throw new Error('계정이 존재하지 않습니다.');
+			}
+			return existingUser;
 		},
 	};
 }

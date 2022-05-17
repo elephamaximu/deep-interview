@@ -1,4 +1,13 @@
-const Coupon = ({ onSubmit, defaultCount, success, error }) => {
+import Router from 'next/router';
+import { useEffect } from 'react';
+
+const Coupon = ({ currentUser, onSubmit, defaultCount, success, error }) => {
+	useEffect(() => {
+		if (!currentUser) {
+			Router.push('/auth/signin');
+		}
+	}, [currentUser]);
+
 	const showError = () => {
 		return error ? (
 			<div

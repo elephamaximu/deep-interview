@@ -8,7 +8,6 @@ const Nav = () => {
 	const [links, setLinks] = useState([]);
 	const [nav, setNav] = useState(false);
 	const { isLoggedin } = useSelector((state) => state.authReducer);
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {

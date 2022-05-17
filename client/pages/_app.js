@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Nav from '@/components/Nav';
 import { wrapper } from '@/modules/store';
 import withReduxSaga from 'next-redux-saga';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { currentUserRequest } from '@/modules/auth';
 
@@ -20,14 +20,14 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
 	const NestedLayout = Component.Layout || EmptyLayout;
 
 	return (
-		<>
+		<React.Fragment>
 			<Header />
 			<Nav />
 			<NestedLayout>
-				<Component {...pageProps} />
+				<Component {...pageProps} currentUser={currentUser} />
 			</NestedLayout>
 			<Footer />
-		</>
+		</React.Fragment>
 	);
 };
 
@@ -38,7 +38,11 @@ AppComponent.getInitialProps = async (context) => {
 
 	let pageProps = {};
 	if (context.Component.getInitialProps) {
-		pageProps = await context.Component.getInitialProps(context.ctx);
+		pageProps = await context.Component.getInitialProps(
+			context.ctx,
+			client,
+			data.currentUser
+		);
 	}
 	return { pageProps, ...data };
 };

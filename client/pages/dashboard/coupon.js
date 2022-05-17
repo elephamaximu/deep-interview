@@ -3,7 +3,7 @@ import Coupon from '@/components/dashboard/Coupon';
 import axios from 'axios';
 import { useState } from 'react';
 
-const coupon = () => {
+const coupon = ({ currentUser }) => {
 	const default_count = 1;
 
 	const [success, setSuccess] = useState('');
@@ -17,7 +17,6 @@ const coupon = () => {
 			const result = await axios.post('/api/coupons', {
 				new_coupons: default_count,
 			});
-			console.log(result);
 			setSuccess(`성공 : 현재 보유 쿠폰은 ${result.data.coupons}개 입니다.`);
 		} catch (err) {
 			setError(err.response.data.message);
@@ -30,6 +29,7 @@ const coupon = () => {
 			defaultCount={default_count}
 			success={success}
 			error={error}
+			currentUser={currentUser}
 		/>
 	);
 };

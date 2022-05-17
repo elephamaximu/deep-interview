@@ -16,6 +16,12 @@ export default function InterviewModel(mongoose) {
 			toJSON: {
 				transform(_doc, ret) {
 					delete ret.key;
+					delete ret.videoKey;
+					delete ret.createdAt;
+					delete ret.updatedAt;
+					delete ret.__v;
+					ret.id = ret._id;
+					delete ret._id;
 				},
 			},
 		}

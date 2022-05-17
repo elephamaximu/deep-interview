@@ -15,27 +15,6 @@ spec:
       containers:
         - name: client
           image: deep-interview-client-local
-          env:
-            - name: NEXT_PUBLIC_APP_ID
-              valueFrom:
-                secretKeyRef:
-                  name: "interview-secret"
-                  key: appid
-            - name: NEXT_PUBLIC_UUID
-              valueFrom:
-                secretKeyRef:
-                  name: "interview-secret"
-                  key: uuid
-            - name: NEXT_PUBLIC_CLIENT_HOST_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: "interview-secret"
-                  key: clientHostname
-            - name: NEXT_PUBLIC_STUDIOS_BASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: "interview-secret"
-                  key: studiosBaseUrl
           resources:
             limits:
               memory: 521Mi
