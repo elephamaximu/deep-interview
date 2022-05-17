@@ -6,7 +6,7 @@
 
 배포주소 :
 <https://deepinterview.link>
-- 배포 형태는 amazon EKS 를 통한 배포로 프로젝트 발표날 시연을 위해 배포할 예정
+- 배포 형태는 amazon EKS 를 통한 배포로 프로젝트 발표날 시연을 위해 배포할 예정 -> 시간이 부족해 배포는 
 
 
 ## about branch
