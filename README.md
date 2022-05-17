@@ -10,7 +10,7 @@
 
 
 ## about branch
-- main : Github action을 통해 aws EKS로 자동 배포 되는 브랜치
+- main : aws EKS로 배포  브랜치
 - local : 로컬에서 Skaffold와 데스크탑용 도커/쿠버네티스를 이용한 테스트용 브랜치
 - feature-[github issue 번호] : 기능 추가, local 브랜치로 merge
 - bugfix-[github issue 번호] : bugfix, local 브랜치로 merge
