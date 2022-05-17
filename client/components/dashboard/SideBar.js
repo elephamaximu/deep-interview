@@ -12,12 +12,12 @@ const SideBar = () => {
 					<SideBarIcon icon={<FaMale size='28' />} text='내 정보' />
 				</a>
 			</Link>
-			<Link href='/dashboard/item'>
+			<Link href='/dashboard/interviews/create'>
 				<a>
 					<SideBarIcon icon={<FaPager size='32' />} text='인터뷰 생성' />
 				</a>
 			</Link>
-			<Link href='/dashboard/itembox'>
+			<Link href='/dashboard/interviews'>
 				<a>
 					<SideBarIcon
 						icon={<FaStepForward size='22' />}

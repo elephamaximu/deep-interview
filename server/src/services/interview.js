@@ -6,26 +6,31 @@ export default function InterviewService() {
 	const User = db.User;
 
 	return {
-		async getInterview(req, res) {
-			const { email, password } = req.body;
+		async getInterviewList(req) {
+			const _user = req.currentUser.id;
 
-			const existingUser = await User.findOne({ email });
+			const existingInterview = await Interview.find({
+				_user,
+			});
 
-			if (existingUser) {
-				throw new Error('이미 사용중인 이메일입니다.');
-			}
-
-			const user = new User({ email, password });
-			await user.save();
-
-			res.status(200).send(user);
+			return existingInterview;
 		},
-		async getModelKey(req, res) {
+		async getSingleInterview(req) {
+			const _user = req.currentUser.id;
+			const _id = req.params.id;
+
+			const existingInterview = await Interview.findOne({
+				_user,
+				_id,
+			});
+
+			return existingInterview;
+		},
+		async getModelKey(req) {
 			const { title, question } = req.body;
+			const _user = req.currentUser.id;
 
-			const { id } = req.currentUser;
-
-			const existingUser = await User.findOne({ _id: id });
+			const existingUser = await User.findOne({ _id: _user });
 
 			try {
 				const response = await axios.get(
@@ -60,12 +65,12 @@ export default function InterviewService() {
 				existingUser.coupons -= 1;
 				await existingUser.save();
 
-				res.status(200).send(interveiw);
+				return interveiw;
 			} catch (err) {
-				console.log(err);
+				throw new Error('에러가 발생하였습니다. 잠시 후 다시 실행해 주세요.');
 			}
 		},
-		async createInterview(req, res) {
+		async createInterview(req) {
 			const _user = req.currentUser.id;
 			const _id = req.body.interview_id;
 
@@ -85,6 +90,7 @@ export default function InterviewService() {
 						sdk_v: '1.0',
 						language: 'ko',
 						model: 'ysy',
+						clothes: '2',
 						token: `${existingInterview.key}`,
 						uuid: process.env.UUID,
 						text: `${existingInterview.question}`,
@@ -95,13 +101,15 @@ export default function InterviewService() {
 				existingInterview.videoKey = video_key;
 				await existingInterview.save();
 
-				res.status(200).send(existingInterview);
+				return existingInterview;
 			} catch (err) {
-				console.log(err);
+				throw new Error(
+					'합성이 이루어지지 않았습니다. 잠시 후 다시 요청하세요'
+				);
 			}
 		},
 
-		async findVideo(req, res) {
+		async findVideo(req) {
 			const _user = req.currentUser.id;
 			const _id = req.body.interview_id;
 
@@ -109,6 +117,7 @@ export default function InterviewService() {
 				_id,
 				_user,
 			});
+
 			try {
 				const result = await axios.post(
 					`${process.env.STUDIOS_BASE_URL}/findProject`,
@@ -123,15 +132,14 @@ export default function InterviewService() {
 						key: `${existingInterview.videoKey}`,
 					}
 				);
-				const { success, data } = result;
-				console.log(data);
-				const videoUrl = data.video;
 
-				existingInterview.videoUrl = videoUrl;
+				const data = result.data.data;
+				existingInterview.videoUrl = data.video;
 				await existingInterview.save();
-				res.send(existingInterview);
+
+				return existingInterview;
 			} catch (err) {
-				console.log(err);
+				throw new Error('합성이 완성되지 않았습니다. 잠시 후 다시 요청하세요');
 			}
 		},
 	};
